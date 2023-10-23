@@ -1,0 +1,30 @@
+
+version: "3.6"
+services:          
+             
+  sws-client:
+    image: "cmjsoftware1/sws-website"
+    container_name: "sws-website"
+    restart: always
+    ports:
+      - "4200:4200"
+    env_file:
+      - .env
+    volumes:
+      - ./client:/app/client
+           
+  sws-api:
+    image: "cmjsoftware1/sws-api-srv"
+    container_name: "sws-api-srv"
+    restart: always
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    volumes:
+      - ./api:/app/api
+          
+networks:
+  default:
+    driver: bridge        
+            
